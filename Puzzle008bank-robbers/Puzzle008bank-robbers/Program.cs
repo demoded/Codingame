@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 /*
+https://www.codingame.com/training/easy/bank-robbers
 A gang of R foolish robbers decides to heist a bank. In the bank there are V vaults (indexed from 0 to V - 1). 
 The robbers have managed to extract some information from the bank's director:
 - The combination of a vault is composed of C characters (digits/vowels).
