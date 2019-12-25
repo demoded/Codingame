@@ -27,28 +27,13 @@ Starting from C will end up in 3. It is guaranteed that every top label will map
 
 Given a Ghost Legs diagram, find out which top label is connected with which bottom label. List all connected pairs.
 
-Test case:
-    Input
-    7 7
-    A  B  C
-    |  |  |
-    |--|  |
-    |  |--|
-    |  |--|
-    |  |  |
-    1  2  3
-
-    Output
-    A2
-    B1
-    C3
 */
 
 namespace Puzzle009ghost_legs
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             string[] inputs = Console.ReadLine().Split(' ');
             int W = int.Parse(inputs[0]);
@@ -66,22 +51,26 @@ namespace Puzzle009ghost_legs
                     header = h.Select((value, index) => new { value, index }).ToDictionary(pair => pair.value, pair => pair.index);
                 }
 
+                //take header state snapshot to skip double move in some cases
+                var headerState = new Dictionary<char, int>(header);
+
+                //loop through line, picking every 3rd character
                 for (int c = 0; c < line.Length; c += 3)
                 {
-                    var workDict = new Dictionary<char, int>();
-                    workDict.
+                    //if right symbol is '-' move index to the next column
                     if (c < line.Length - 1 && line[c + 1] == '-')
                     {
-                        var headerLoop = header.Where(t => t.Value == c / 3).ToList();
+                        var headerLoop = headerState.Where(t => t.Value == c / 3).ToList();
                         foreach (var h in headerLoop)
                         {
                             header.Remove(h.Key);
                             header.Add(h.Key, h.Value + 1);
                         }
                     }
+                    //if left symbol is '-' move index to the previous column
                     else if (c > 0 && line[c - 1] == '-')
                     {
-                        var headerLoop = header.Where(t => t.Value == c / 3).ToList();
+                        var headerLoop = headerState.Where(t => t.Value == c / 3).ToList();
                         foreach (var h in headerLoop)
                         {
                             header.Remove(h.Key);
@@ -97,8 +86,7 @@ namespace Puzzle009ghost_legs
                 }
             }
 
-            // Write an action using Console.WriteLine()
-            // To debug: Console.Error.WriteLine("Debug messages...");
+            //for every heder letter show footers character in calculated position
             foreach (var h in header)
             {
                 Console.WriteLine(h.Key + footer[h.Value].ToString());
