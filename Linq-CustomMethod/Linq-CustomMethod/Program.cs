@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 
 /// <summary>
+///     How to create your own linq method
 ///     Final task from https://www.codingame.com/playgrounds/345/c-linq-background-topics/welcome
 /// </summary>
 namespace Linq_CustomMethod
