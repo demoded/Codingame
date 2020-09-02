@@ -2,6 +2,10 @@
 
 namespace Puzzle012ShadowsOfTheKnight_E1
 {
+    /*
+    //https://www.codingame.com/ide/puzzle/shadows-of-the-knight-episode-1
+    This is an interactive bot-like task, testing possible only on codingame
+    */
     class Program
     {
         static void Main(string[] args)
