@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Serilog;
 
 namespace Puzzle013target_firing
 {
     /*
-     «Story»
+    https://www.codingame.com/training/medium/target-firing
+    «Story»
     Your spaceship is under attack by aliens! (It's actually your friend's spaceship, so the situation is even worse) 
     Luckily your spaceship is equipped with an antimatter beam, while the aliens only have cheap (but still dangerous) laser pointers. 
     Can you destroy all alien spaceships safely, or should you flee?
@@ -40,75 +41,33 @@ namespace Puzzle013target_firing
             public int HP { get; set; }
             public int Armor { get; set; }
             public int Damage { get; set; }
-            public double HitsToKill { get; set; }
-
-            public void Attack()
-            {
-                int attackDamage = 0;
-                if (Type == "FIGHTER")
-                {
-                    attackDamage = 20 - Armor;
-                }
-                else
-                {
-                    attackDamage = 10 - Armor;
-                }
-
-                HP -= attackDamage > 0 ? attackDamage : 1;
-            }
-
-            public void updateHitsToKill()
-            {
-                if (Type == "FIGHTER")
-                { HitsToKill = Math.Ceiling(Armor >= 20 ? HP : (double)(HP / (20.0 - Armor))); }
-                else
-                { HitsToKill = Math.Ceiling(Armor >= 10 ? HP : (double)(HP / (10.0 - Armor))); }
-            }
+            public int hitDamage => Math.Max((Type == "FIGHTER" ? 20 : 10) - Armor, 1);
+            public double HitsToKill => Math.Ceiling((double)HP / hitDamage);
         }
 
         public static void Main(string[] args)
         {
-            List<Alien> alienShips = new List<Alien>();
             int motherShipHP = 5000;
 
-            Log.Logger = new LoggerConfiguration()
-                .WriteTo.File("..\\..\\..\\consoleapp.log")
-                .CreateLogger();
-
             int N = int.Parse(Console.ReadLine());
-            for (int i = 0; i < N; i++)
-            {
-                string[] inputs = Console.ReadLine().Split(' ');
-                string inTYPE = inputs[0];
-                int inHP = int.Parse(inputs[1]);
-                int inARMOR = int.Parse(inputs[2]);
-                int inDAMAGE = int.Parse(inputs[3]);
-                var a = new Alien
-                { Type = inTYPE, HP = inHP, Armor = inARMOR, Damage = inDAMAGE };
-                a.updateHitsToKill();
-
-                alienShips.Add(a);
-            }
-
-            alienShips = alienShips.OrderByDescending(a => a.Damage / a.HitsToKill).ToList();
-
-            while (alienShips.Count() > 0)
-            {
-                Log.Information("Attack");
-                foreach (var a in alienShips)
+            var alienShips = Enumerable.Range(0, N)
+                .Select(_ => Console.ReadLine().Split())
+                .Select(inputs => new Alien()
                 {
-                    Log.Information($"DEBUG>>>{a.Type} {a.HP, -3} {a.Armor, 3} {a.Damage, -3} {a.HitsToKill, -3} {a.HitsToKill * a.Damage}");
-                }
+                    Type = inputs[0],
+                    HP = int.Parse(inputs[1]),
+                    Armor = int.Parse(inputs[2]),
+                    Damage = int.Parse(inputs[3])
+                })
+                .OrderByDescending(a => a.Damage / a.HitsToKill)
+                .ToList();
 
+            while (alienShips.Any() && motherShipHP > 0)
+            {
                 motherShipHP -= alienShips.Sum(a => a.Damage);
-                Log.Information($"DEBUG>>>{motherShipHP}");
-                if (motherShipHP <= 0)
-                {
-                    break;
-                }
 
                 var attackAlien = alienShips.First();
-                attackAlien.Attack();
+                attackAlien.HP -= attackAlien.hitDamage;
                 if (attackAlien.HP <= 0)
                 {
                     alienShips.Remove(attackAlien);
