@@ -1,6 +1,9 @@
-Convert.ToString(n, 2)
-Convert.ToString(n, 8)
-Convert.ToString(n, 16)
+Convert.ToString(n, 2)      //To binary
+Convert.ToString(n, 8)      //To octal
+Convert.ToString(n, 16)     //To hexadecimal
+
+//linq to read from Console
+var a = Enumerable.Range(0, N).Select(_ => Console.ReadLine().Split()).ToList();
 
 //count total number of the same charachter in line //100020300001 -> 8
 return s.ToCharArray().OrderBy(o => o).GroupBy(g => g).OrderByDescending(oo => oo.Count()).FirstOrDefault().Count();
