@@ -11,4 +11,24 @@ return s.ToCharArray().OrderBy(o => o).GroupBy(g => g).OrderByDescending(oo => o
 //find longest consequtive group of '0'  //100020300001 -> 4
 return N.Split("123456789".ToCharArray()).OrderByDescending(o => o.Count()).FirstOrDefault().Count();
 
+--------------------------------------------------------------------------------------
 
+//Mountain task
+/*
+   /\   
+  /  \    /\  
+ /    \  /  \  /\ 
+/      \/    \/  \/\
+*/
+
+for (int i = 0; i < N; i++)
+{
+    string s = "";
+    for (int j = N; j >= N - i; j--)
+    {
+        s += new string(' ', N - i - 1);
+        s += '/' + new string(' ', 2 * i - 2 * (N - j)) + '\\';
+        s += new string(' ', N - i - 1);
+    }
+    Console.WriteLine(s);
+}
