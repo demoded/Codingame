@@ -12,6 +12,19 @@ return s.ToCharArray().OrderBy(o => o).GroupBy(g => g).OrderByDescending(oo => o
 return N.Split("123456789".ToCharArray()).OrderByDescending(o => o.Count()).FirstOrDefault().Count();
 
 --------------------------------------------------------------------------------------
+public static bool IsPrime(int number)
+{
+    if (number == 1) return false;
+    if (number == 2) return true;
+
+    var limit = Math.Ceiling(Math.Sqrt(number)); //hoisting the loop limit
+
+    for (int i = 2; i <= limit; ++i)
+        if (number % i == 0)
+            return false;
+    return true;
+}
+--------------------------------------------------------------------------------------
 
 //Mountain task
 /*
@@ -32,3 +45,22 @@ for (int i = 0; i < N; i++)
     }
     Console.WriteLine(s);
 }
+--------------------------------------------------------------------------------------
+//HI = 15
+//ZZZZZZ = 150
+//AAAA-= = 0
+
+using System;
+using System.Linq;
+
+String s = "ZZZZZZ";
+var a = s.Where(_ => Char.IsLetter(_)).ToArray();
+int res = 0;
+
+foreach (var c in a)
+{
+    res += c - 64;
+}
+Console.WriteLine(res - a.Length);
+--------------------------------------------------------------------------------------
+
