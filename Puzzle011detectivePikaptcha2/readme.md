@@ -1,4 +1,4 @@
-[Detective Pikapcha tast](https://www.codingame.com/training/easy/detective-pikaptcha-ep2)
+[Detective Pikapcha task](https://www.codingame.com/training/easy/detective-pikaptcha-ep2)
 
 ### Goal
 Thanks to your help, Detective Pikaptcha was able to get a sense of where he was trapped: a space-warp maze! 
