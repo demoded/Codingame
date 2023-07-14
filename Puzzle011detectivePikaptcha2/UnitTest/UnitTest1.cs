@@ -48,6 +48,23 @@ namespace UnitTest
 
             Assert.AreEqual<string>(expected, RunTest(testcase));
         }
+
+        [TestMethod]
+        public void TestMethod3_Trapped()
+        {
+            /*
+             3 3
+             0#0
+             #>#
+             0#0
+             L
+             */
+            string testcase = string.Format("3 3{0}0#0{0}#>#{0}0#0{0}L", Environment.NewLine);
+            string expected = string.Format("0#0{0}#0#{0}0#0", Environment.NewLine);
+
+            Assert.AreEqual<string>(expected, RunTest(testcase));
+        }
+
         string RunTest(string _in)
         {
             string result;
