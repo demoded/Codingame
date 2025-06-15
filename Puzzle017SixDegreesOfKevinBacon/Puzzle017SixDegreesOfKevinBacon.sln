@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle017SixDegreesOfKevinBacon", "Puzzle017SixDegreesOfKevinBacon\Puzzle017SixDegreesOfKevinBacon.csproj", "{72CA2F1C-DA66-4E28-85DD-9DA9AABC2501}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle017SixDegreesOfKevinBacon.Tests", "Puzzle017SixDegreesOfKevinBacon.Tests\Puzzle017SixDegreesOfKevinBacon.Tests.csproj", "{54063C01-A0CC-4FFC-A562-5EEB10D41EE4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72CA2F1C-DA66-4E28-85DD-9DA9AABC2501}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72CA2F1C-DA66-4E28-85DD-9DA9AABC2501}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72CA2F1C-DA66-4E28-85DD-9DA9AABC2501}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72CA2F1C-DA66-4E28-85DD-9DA9AABC2501}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54063C01-A0CC-4FFC-A562-5EEB10D41EE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54063C01-A0CC-4FFC-A562-5EEB10D41EE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54063C01-A0CC-4FFC-A562-5EEB10D41EE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54063C01-A0CC-4FFC-A562-5EEB10D41EE4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A835BE14-657A-48EF-B68D-5ECC03FE14C6}
+	EndGlobalSection
+EndGlobal
